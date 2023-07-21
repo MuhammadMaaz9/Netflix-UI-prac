@@ -6,6 +6,7 @@ class Screen1 extends StatelessWidget {
   const Screen1({super.key});
 
   @override
+  @override
   Widget build(BuildContext context) {
     Screen1Controller controller = Get.put(Screen1Controller());
 
@@ -20,41 +21,59 @@ class Screen1 extends StatelessWidget {
         centerTitle: true,
         title: Text('Watch'),
       ),
-      body: Obx(
-        () => Column(
-          children: [
-            Container(
-              height: 0.4 * height,
-              width: double.infinity,
-              color: Colors.white,
-            ),
-            SizedBox(
-              height: 0.05 * height,
-            ),
-            Row(
-              children: [
-                Text(
-                  'Watch Movies',
-                  style: TextStyle(color: Colors.white),
-                ),
-              ],
-            ),
-            Expanded(
-              child: ListView.builder(
-                itemCount: controller.movieData.length,
-                itemBuilder: (context, index) {
-                  //final movie = controller.movieData.length;
-                  return ListTile(
-                    title: Text(
-                      controller.movieData[index].title.toString(),
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  );
-                },
+      body: Column(
+        children: [
+          Container(
+            child: Image.asset('assets/bg.jpg', fit: BoxFit.cover),
+            height: 0.48 * height,
+            width: double.infinity,
+            color: Color.fromARGB(255, 18, 11, 11),
+          ),
+          SizedBox(
+            height: 0.05 * height,
+          ),
+          Row(
+            children: [
+              Text(
+                'Watch Movies',
+                style: TextStyle(color: Colors.white),
               ),
-            )
-          ],
-        ),
+            ],
+          ),
+          Obx(
+            () => Expanded(
+                child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: controller.movieData.length,
+              itemBuilder: (context, index) {
+                return Container(
+                  // color: Colors.yellow,
+                  height: 50,
+                  width: 140,
+                  child: Column(
+                    children: [
+                      Container(
+                        height: 200,
+                        decoration: BoxDecoration(
+                            //color: Colors.deepOrange,
+                            image: DecorationImage(
+                                image: NetworkImage(
+                          controller.movieData[index].posterPath,
+                        ))),
+                      ),
+                      Container(
+                        child: Text(
+                          controller.movieData[index].title.toString(),
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      )
+                    ],
+                  ),
+                );
+              },
+            )),
+          )
+        ],
       ),
     );
   }
@@ -68,3 +87,21 @@ class Screen extends StatelessWidget {
     return const Placeholder();
   }
 }
+
+
+// ListView.builder(
+                //   itemCount: controller.movieData.length,
+                //   itemBuilder: (context, index) {
+                //     return ListTile(
+                //       leading: Image.network(
+                //         controller.movieData[index].posterPath,
+                //         height: 50,
+                //         width: 50,
+                //       ),
+                //       title: Text(
+                //         controller.movieData[index].title.toString(),
+                //         style: TextStyle(color: Colors.black),
+                //       ),
+                //     );
+                //   },
+                // ),

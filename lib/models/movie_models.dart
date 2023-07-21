@@ -86,10 +86,11 @@ class Result {
         id: json["id"],
         title: json["title"],
         originalLanguage:
-            originalLanguageValues.map[json["original_language"]]!,
+            originalLanguageValues.map[json["original_language"]] ??
+                OriginalLanguage.EN,
         originalTitle: json["original_title"],
         overview: json["overview"],
-        posterPath: json["poster_path"],
+        posterPath: "https://image.tmdb.org/t/p/w500${json['poster_path']}",
         mediaType: mediaTypeValues.map[json["media_type"]]!,
         genreIds: List<int>.from(json["genre_ids"].map((x) => x)),
         popularity: json["popularity"]?.toDouble(),

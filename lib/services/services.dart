@@ -6,8 +6,9 @@ class ApiService {
     try {
       var url = Uri.parse(
           'https://api.themoviedb.org/3/trending/all/day?api_key=39cf98d7db1ad3069227393fa6315d10');
-
       var response = await http.get(url);
+      print('services : ${response.body}');
+
       if (response.statusCode == 200 || response.statusCode == 201) {
         final movie = movieFromJson(response.body);
         //moviedata = movie.results;
@@ -15,7 +16,8 @@ class ApiService {
         return movie;
       }
     } catch (e) {
-      print(e.toString());
+      print('error : ${e.toString()}');
     }
+    return null;
   }
 }
