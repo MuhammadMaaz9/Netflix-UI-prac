@@ -82,7 +82,7 @@ class Result {
 
   factory Result.fromJson(Map<String, dynamic> json) => Result(
         adult: json["adult"],
-        backdropPath: json["backdrop_path"],
+        backdropPath: "https://image.tmdb.org/t/p/w500${json["backdrop_path"]}",
         id: json["id"],
         title: json["title"],
         originalLanguage:

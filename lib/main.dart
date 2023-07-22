@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:practice_ui/views/screen1.dart';
 
 void main() {
-  runApp(Main());
+  runApp(const Main());
 }
 
 class Main extends StatelessWidget {
@@ -11,7 +11,8 @@ class Main extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
+    return const GetMaterialApp(
+      // theme: ThemeData(primaryColor: Colors.black),
       debugShowCheckedModeBanner: false,
       home: Screen1(),
     );
